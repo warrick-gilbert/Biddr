@@ -1,0 +1,7 @@
+<%= simple_form_for @auction do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body %>
+  <%= f.input :closing_date, as: :date, label: "Ends on: "  %>
+  <%= f.input :reserve %>
+  <%= f.submit "Save" %>
+<% end %>

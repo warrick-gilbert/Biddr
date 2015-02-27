@@ -8,6 +8,18 @@
 </head>
 <body>
 
+Biddr
+<hr>
+<%= link_to "All auctions", auctions_path %> | 
+<%= link_to "Create new auction", new_auction_path %>
+<hr>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% elsif flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
 <%= yield %>
 
 </body>

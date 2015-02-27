@@ -1,0 +1,26 @@
+<h1><%= @auction.title %></h1>
+<p>Description: <%= @auction.body %></p>
+<p>Current bid: $<%= @auction.amount %></p>
+
+<p><% if @auction.reserve_met? %>
+  Reserve price met
+<% else %>
+ Reserve price not met
+<% end %>
+
+  <%= simple_form_for [@auction, @bid] do |f| %>
+  <%= f.input :amount, label: "How much to bid?"%>
+  <%= f.submit "Place bid" %>
+  <% end %>
+<br>
+<p>Previous bids</p>
+<% @bids.each do |b| %>
+  $<%= b.amount %>
+  <%= b.created_at %>
+  <br>
+<% end %>
+
+
+<hr>
+<%= link_to "Edit this auction", edit_auction_path(@auction)  %>
+<%= link_to "Delete this auction", auction_path(@auction), method: :delete,  data: {confirm: "Are you use you want to delete this auction? "}, class: "btn btn-danger"   %>

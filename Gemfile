@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
   gem 'simple_form'
   gem "bootstrap-sass"
-
+  gem 'aasm'
 
 group :development, :test do
   gem "rspec-rails"
