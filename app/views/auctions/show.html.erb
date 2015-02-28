@@ -15,12 +15,18 @@
 <br>
 <p>Previous bids</p>
 <% @bids.each do |b| %>
-  $<%= b.amount %>
+  $<%= b.amount %> at 
   <%= b.created_at %>
+     By the person: <%= User.find(b.user_id).username %>
   <br>
 <% end %>
 
 
 <hr>
-<%= link_to "Edit this auction", edit_auction_path(@auction)  %>
-<%= link_to "Delete this auction", auction_path(@auction), method: :delete,  data: {confirm: "Are you use you want to delete this auction? "}, class: "btn btn-danger"   %>
+
+current_user.id is : <%= current_user.id %> <br>
+@auction.user_id  is : <%= @auction.user_id %><br>
+<% if @current_user = @auction.user %>
+  <%= link_to "Edit this auction", edit_auction_path(@auction)  %>
+  <%= link_to "Delete this auction", auction_path(@auction), method: :delete,  data: {confirm: "Are you use you want to delete this auction? "}, class: "btn btn-danger"   %>
+<% end %>

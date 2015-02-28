@@ -1,9 +1,23 @@
 Rails.application.routes.draw do
 
+  # get 'sessions/new'
+
+  # get 'sessions/create'
+
+  # get 'sessions/destroy'
+
   resources :auctions do
-    resources :bids
+    resources :bids, only: [:new, :create]
   end
   
+
+  resources :users, only: [:new, :create] do
+    resources :bids, only: [:index]
+  end
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

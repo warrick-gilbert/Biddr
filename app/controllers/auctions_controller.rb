@@ -6,6 +6,7 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.new auction_params
+    @auction.user = current_user
     if @auction.save
       # render text: @auction.id
       redirect_to @auction, notice: "Auction created!"

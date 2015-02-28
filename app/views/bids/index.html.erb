@@ -1,0 +1,6 @@
+<h1>A list of the bids for user: <%= @user %></h1>
+
+<% @bids.each do |b| %>
+  $<%= b.amount %> for the auction titled: <%= Auction.find_by_id(b.auction_id).title %>
+  <br>
+<% end %>

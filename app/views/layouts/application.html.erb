@@ -11,13 +11,27 @@
 Biddr
 <hr>
 <%= link_to "All auctions", auctions_path %> | 
-<%= link_to "Create new auction", new_auction_path %>
+<%= link_to "Create new auction", new_auction_path %> | 
+
+  <% if user_signed_in? %>
+    Welcome <%= current_user.username %>
+    <%= link_to "Sign Out", sessions_path, method: :delete %> | 
+    <%= link_to "All my bids", user_bids_path(current_user) %>
+  <% else %>
+    <%= link_to "Sign In", new_session_path %> |
+    or
+    <%= link_to "Sign Up", new_user_path %>
+  <% end %>
 <hr>
 
 <% if flash[:notice] %>
   <div class="alert alert-success"><%= flash[:notice] %></div>
 <% elsif flash[:alert] %>
   <div class="alert alert-danger"><%= flash[:alert] %></div>
+  <% elsif flash[:success] %>
+  <div class="alert alert-danger"><%= flash[:success] %></div>
+  <% elsif flash[:error] %>
+  <div class="alert alert-danger"><%= flash[:error] %></div>
 <% end %>
 
 <%= yield %>
